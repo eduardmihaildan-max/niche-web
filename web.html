@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="ro" class="h-full">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NICHE - Streetwear</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script src="/_sdk/element_sdk.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { height: 100%; }
+      .app-wrapper { height: 100%; overflow-y: auto; overflow-x: hidden; }
+
+      .font-display { font-family: 'Bebas Neue', sans-serif; }
+      .font-body { font-family: 'Space Grotesk', sans-serif; }
+
+      .product-card:hover .product-image { transform: scale(1.05); }
+      .product-card:hover .product-overlay { opacity: 1; }
+
+      .btn-primary { position: relative; overflow: hidden; }
+      .btn-primary::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.5s;
+      }
+      .btn-primary:hover::before { left: 100%; }
+
+      .fade-in { animation: fadeIn 0.8s ease-out forwards; }
+      @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+      .stagger-1 { animation-delay: 0.1s; }
+      .stagger-2 { animation-delay: 0.2s; }
+      .stagger-3 { animation-delay: 0.3s; }
+      .stagger-4 { animation-delay: 0.4s; }
+      .stagger-5 { animation-delay: 0.5s; }
+
+      .feature-icon { transition: transform 0.3s ease, background 0.3s ease; }
+      .feature-card:hover .feature-icon { transform: rotate(5deg) scale(1.1); }
+
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: #0a0a0a; }
+      ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: #555; }
+    </style>
+  </head>
+
+  <body class="h-full font-body">
+    <div class="app-wrapper" id="app-wrapper">
+      <!-- Navigation -->
+      <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-4 backdrop-blur-md bg-opacity-90" id="navbar" style="background-color: rgba(10,10,10,0.95);">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+          <a href="https://niche-bft-shop.fourthwall.com" class="font-display text-2xl tracking-wider" id="nav-brand" style="color: #ffffff;">NICHE</a>
+          <div class="hidden md:flex items-center gap-8">
+            <a href="#about" class="text-sm tracking-wide hover:opacity-70 transition-opacity" style="color: #a0a0a0;">DESPRE</a>
+            <a href="#collection" class="text-sm tracking-wide hover:opacity-70 transition-opacity" style="color: #a0a0a0;">COLECȚIE</a>
+            <a href="#why-us" class="text-sm tracking-wide hover:opacity-70 transition-opacity" style="color: #a0a0a0;">DE CE NOI</a>
+          </div>
+          <a href="https://niche-bft-shop.fourthwall.com" target="_blank" rel="noopener noreferrer" class="btn-primary px-6 py-2 text-sm font-medium tracking-wider transition-all duration-300 hover:scale-105" id="nav-shop-btn" style="background-color: #ffffff; color: #0a0a0a;"> SHOP </a>
+        </div>
+      </nav>
+
+      <!-- Hero Section -->
+      <section class="relative min-h-screen flex items-center justify-center px-6" id="hero-section" style="background-color: #0a0a0a;">
+        <div class="relative z-10 text-center max-w-4xl mx-auto">
+          <div class="fade-in opacity-0">
+            <span class="inline-block px-4 py-1 mb-6 text-xs tracking-[0.3em] border" id="hero-tag" style="color: #a0a0a0; border-color: #333;">STREETWEAR MINIMALIST</span>
+          </div>
+          <h1 class="font-display text-7xl md:text-9xl tracking-tight mb-6 fade-in opacity-0 stagger-1" id="hero-title" style="color: #ffffff;">NICHE</h1>
+          <p class="text-lg md:text-xl font-light mb-10 max-w-xl mx-auto fade-in opacity-0 stagger-2" id="hero-subtitle" style="color: #a0a0a0;">Clothing for those who refuse to grow up. Premium streetwear, timeless design.</p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in opacity-0 stagger-3">
+            <a href="https://niche-bft-shop.fourthwall.com" target="_blank" rel="noopener noreferrer" class="btn-primary px-10 py-4 text-sm font-semibold tracking-[0.2em] transition-all duration-300 hover:scale-105" id="hero-cta" style="background-color: #ffffff; color: #0a0a0a;"> SHOP NOW </a>
+            <a href="#collection" class="px-10 py-4 text-sm font-medium tracking-[0.2em] border transition-all duration-300 hover:bg-white hover:bg-opacity-10" style="color: #ffffff; border-color: #333;"> VEZI COLECȚIA </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="py-24 md:py-32 px-6" style="background-color: #111111;">
+        <div class="max-w-6xl mx-auto">
+          <div class="grid md:grid-cols-2 gap-16 items-center">
+            <div>
+              <span class="text-xs tracking-[0.3em] mb-4 block" style="color: #666;">DESPRE BRAND</span>
+              <h2 class="font-display text-5xl md:text-6xl mb-6" id="about-title" style="color: #ffffff;">BORN FROM<br>THE STREETS</h2>
+              <p class="text-lg leading-relaxed mb-6" id="about-text" style="color: #a0a0a0;">NICHE nu e doar un brand. E o mentalitate. Creăm piese pentru cei care refuză să se conformeze, care aleg autenticitatea în fața trendurilor trecătoare. Fiecare produs este gândit să reziste timpului – ca atitudine și ca material.</p>
+              <p class="text-lg leading-relaxed" style="color: #666;">Minimalism. Calitate. Zero compromisuri.</p>
+            </div>
+            <div class="relative">
+              <div class="aspect-square relative overflow-hidden" style="background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);">
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <span class="font-display text-8xl md:text-9xl opacity-10" style="color: #ffffff;">N</span>
+                </div>
+                <div class="absolute bottom-6 left-6 right-6">
+                  <div class="flex items-center gap-4">
+                    <div class="w-12 h-[1px]" style="background-color: #333;"></div>
+                    <span class="text-xs tracking-[0.2em]" style="color: #666;">EST. 2024</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Collection Section -->
+      <section id="collection" class="py-24 md:py-32 px-6" style="background-color: #0a0a0a;">
+        <div class="max-w-7xl mx-auto">
+          <div class="text-center mb-16">
+            <span class="text-xs tracking-[0.3em] mb-4 block" style="color: #666;">NOUA COLECȚIE</span>
+            <h2 class="font-display text-5xl md:text-7xl" style="color: #ffffff;">THE DROP</h2>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="products-grid">
+
+            <!-- Product 1 - Tee Black -->
+            <div class="product-card group cursor-pointer">
+              <div class="relative overflow-hidden aspect-[3/4] mb-4" style="background-color: #1a1a1a;">
+                <div class="product-image w-full h-full transition-transform duration-500 flex items-center justify-center">
+			<img src="C:\Users\eduar\OneDrive\Imagini\Screenshots\Captură de ecran 2026-02-15 182417.png" alt="NICHE Essential Tee – Black" class="w-full h-full object-cover transition-transform duration-500">
+                </div>
+                <div class="product-overlay absolute inset-0 bg-black bg-opacity-40 opacity-0 transition-opacity duration-300 flex items-center justify-center">
+                  <a href="https://niche-bft-shop.fourthwall.com/products/niche-embroidered-tee" target="_blank" rel="noopener noreferrer" class="px-6 py-3 text-xs font-medium tracking-wider transition-all hover:scale-105" style="background-color: #ffffff; color: #0a0a0a;"> VEZI PRODUSUL </a>
+                </div>
+              </div>
+              <h3 class="font-medium text-sm tracking-wide mb-1" style="color: #ffffff;">NICHE Essential Tee – Black</h3>
+              <p class="text-sm" style="color: #666;">24$</p>
+            </div>
+
+            <!-- Product 2 - Tee White -->
+            <div class="product-card group cursor-pointer">
+              <div class="relative overflow-hidden aspect-[3/4] mb-4" style="background-color: #f5f5f5;">
+                <div class="product-image w-full h-full transition-transform duration-500 flex items-center justify-center">
+                  <img src="C:\Users\eduar\OneDrive\Imagini\Screenshots\Captură de ecran 2026-02-15 182537.png" alt="NICHE Essential Tee – Black" class="w-full h-full object-cover transition-transform duration-500">
+                </div>
+                <div class="product-overlay absolute inset-0 bg-black bg-opacity-40 opacity-0 transition-opacity duration-300 flex items-center justify-center">
+                  <a href="https://niche-bft-shop.fourthwall.com/products/blkctrl-standard-issue-tee" target="_blank" rel="noopener noreferrer" class="px-6 py-3 text-xs font-medium tracking-wider transition-all hover:scale-105" style="background-color: #ffffff; color: #0a0a0a;"> VEZI PRODUSUL </a>
+                </div>
+              </div>
+              <h3 class="font-medium text-sm tracking-wide mb-1" style="color: #ffffff;">NICHE Essential Tee – White</h3>
+              <p class="text-sm" style="color: #666;">24$</p>
+            </div>
+
+            <!-- Product 3 - Hoodie Black -->
+            <div class="product-card group cursor-pointer">
+              <div class="relative overflow-hidden aspect-[3/4] mb-4" style="background-color: #1a1a1a;">
+                <div class="product-image w-full h-full transition-transform duration-500 flex items-center justify-center">
+                  <img src="C:\Users\eduar\OneDrive\Imagini\Screenshots\Captură de ecran 2026-02-15 171508.png" alt="NICHE Essential Tee – Black" class="w-full h-full object-cover transition-transform duration-500">
+                </div>
+                <div class="product-overlay absolute inset-0 bg-black bg-opacity-40 opacity-0 transition-opacity duration-300 flex items-center justify-center">
+                  <a href="https://niche-bft-shop.fourthwall.com/products/basic-niche-hoodie" target="_blank" rel="noopener noreferrer" class="px-6 py-3 text-xs font-medium tracking-wider transition-all hover:scale-105" style="background-color: #ffffff; color: #0a0a0a;"> VEZI PRODUSUL </a>
+                </div>
+              </div>
+              <h3 class="font-medium text-sm tracking-wide mb-1" style="color: #ffffff;">NICHE Core Hoodie – Black</h3>
+              <p class="text-sm" style="color: #666;">50$</p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Why Us Section -->
+   <section id="why-us" class="py-24 md:py-32 px-6" style="background-color: #111111;">
+    <div class="max-w-6xl mx-auto">
+     <div class="text-center mb-16"><span class="text-xs tracking-[0.3em] mb-4 block" style="color: #666;">DE CE NOI</span>
+      <h2 class="font-display text-5xl md:text-6xl" style="color: #ffffff;">THE NICHE<br>
+       STANDARD</h2>
+     </div>
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"><!-- Feature 1 -->
+      <div class="feature-card text-center p-8 transition-all duration-300 hover:bg-white hover:bg-opacity-5" style="border: 1px solid #222;">
+       <div class="feature-icon w-16 h-16 mx-auto mb-6 flex items-center justify-center" style="background-color: #1a1a1a;">
+        <svg class="w-8 h-8" fill="none" stroke="#ffffff" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+        </svg>
+       </div>
+       <h3 class="font-display text-xl mb-3" style="color: #ffffff;">MATERIAL PREMIUM</h3>
+       <p class="text-sm" style="color: #666;">Bumbac 100% organic, 300gsm pentru hanorace. Calitate care se simte.</p>
+      </div><!-- Feature 2 -->
+      <div class="feature-card text-center p-8 transition-all duration-300 hover:bg-white hover:bg-opacity-5" style="border: 1px solid #222;">
+       <div class="feature-icon w-16 h-16 mx-auto mb-6 flex items-center justify-center" style="background-color: #1a1a1a;">
+        <svg class="w-8 h-8" fill="none" stroke="#ffffff" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6z" />
+        </svg>
+       </div>
+       <h3 class="font-display text-xl mb-3" style="color: #ffffff;">DESIGN MINIMALIST</h3>
+       <p class="text-sm" style="color: #666;">Fără exagerări. Linii curate, siluete moderne, detalii subtile.</p>
+      </div><!-- Feature 3 -->
+      <div class="feature-card text-center p-8 transition-all duration-300 hover:bg-white hover:bg-opacity-5" style="border: 1px solid #222;">
+       <div class="feature-icon w-16 h-16 mx-auto mb-6 flex items-center justify-center" style="background-color: #1a1a1a;">
+        <svg class="w-8 h-8" fill="none" stroke="#ffffff" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+       </div>
+       <h3 class="font-display text-xl mb-3" style="color: #ffffff;">LIVRARE RAPIDĂ</h3>
+       <p class="text-sm" style="color: #666;">2-4 zile în România. Livrare gratuită la comenzi peste 300 RON.</p>
+      </div><!-- Feature 4 -->
+      <div class="feature-card text-center p-8 transition-all duration-300 hover:bg-white hover:bg-opacity-5" style="border: 1px solid #222;">
+       <div class="feature-icon w-16 h-16 mx-auto mb-6 flex items-center justify-center" style="background-color: #1a1a1a;">
+        <svg class="w-8 h-8" fill="none" stroke="#ffffff" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+       </div>
+       <h3 class="font-display text-xl mb-3" style="color: #ffffff;">EDIȚII LIMITATE</h3>
+       <p class="text-sm" style="color: #666;">Fiecare drop e unic. Când s-a terminat, s-a terminat.</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- CTA Section -->
+   <section class="py-32 md:py-40 px-6 relative overflow-hidden" style="background-color: #0a0a0a;">
+    <div class="absolute inset-0 opacity-10">
+     <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"><span class="font-display text-[20rem] md:text-[30rem] leading-none" style="color: #ffffff;">N</span>
+     </div>
+    </div>
+    <div class="relative z-10 text-center max-w-3xl mx-auto">
+     <h2 class="font-display text-6xl md:text-8xl mb-6" id="cta-tagline" style="color: #ffffff;">WEAR THE<br>
+      MINDSET.</h2>
+     <p class="text-lg mb-10" style="color: #666;">Nu vindem haine. Vindem o atitudine.</p><a href="https://niche-bft-shop.fourthwall.com" target="_blank" rel="noopener noreferrer" class="btn-primary inline-block px-12 py-5 text-sm font-semibold tracking-[0.2em] transition-all duration-300 hover:scale-105" id="cta-btn" style="background-color: #ffffff; color: #0a0a0a;"> SHOP THE DROP </a>
+    </div>
+   </section><!-- Footer -->
+   <footer class="py-16 px-6" style="background-color: #0a0a0a; border-top: 1px solid #1a1a1a;">
+    <div class="max-w-6xl mx-auto">
+     <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+      <div><span class="font-display text-3xl tracking-wider block mb-4" style="color: #ffffff;">NICHE</span>
+       <p class="text-sm" style="color: #666;">Streetwear pentru cei care refuză să se conformeze.</p>
+      </div>
+      <div>
+       <h4 class="text-xs tracking-[0.2em] mb-4" style="color: #ffffff;">FOLLOW US</h4><a href="https://instagram.com/niche.ro" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 group" id="footer-instagram">
+        <svg class="w-5 h-5 transition-transform group-hover:scale-110" fill="#a0a0a0" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg><span class="text-sm transition-colors group-hover:text-white" id="instagram-text" style="color: #a0a0a0;">@niche.ro</span> </a>
+      </div>
+      <div>
+       <h4 class="text-xs tracking-[0.2em] mb-4" style="color: #ffffff;">CONTACT</h4><a href="mailto:eduardmihaildan@gmail.com" class="text-sm hover:text-white transition-colors" id="contact-email-link" style="color: #a0a0a0;">eduardmihaildan@gmail.com</a>
+      </div>
+     </div>
+     <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style="border-top: 1px solid #1a1a1a;">
+      <p class="text-xs" style="color: #444;">© 2026 NICHE. Toate drepturile rezervate.</p>
+      <div class="flex items-center gap-6"><a href="#" class="text-xs hover:text-white transition-colors" style="color: #444;">Termeni &amp; Condiții</a> <a href="#" class="text-xs hover:text-white transition-colors" style="color: #444;">Politica de Confidențialitate</a>
+      </div>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+    const defaultConfig = {
+      brand_name: 'NICHE',
+      hero_subtitle: 'Clothing for those who refuse to grow up. Premium streetwear, timeless design.',
+      about_title: 'BORN FROM THE STREETS',
+      about_text: 'NICHE nu e doar un brand. E o mentalitate. Creăm piese pentru cei care refuză să se conformeze, care aleg autenticitatea în fața trendurilor trecătoare. Fiecare produs este gândit să reziste timpului – ca atitudine și ca material.',
+      cta_tagline: 'WEAR THE MINDSET.',
+      instagram_handle: '@niche.ro',
+      contact_email: 'eduardmihaildan@gmail.com',
+      background_color: '#0a0a0a',
+      surface_color: '#1a1a1a',
+      text_color: '#ffffff',
+      accent_color: '#a0a0a0',
+      button_color: '#ffffff',
+      font_family: 'Space Grotesk',
+      font_size: 16
+    };
+
+    async function onConfigChange(config) {
+      const c = { ...defaultConfig, ...config };
+      
+      // Update text content
+      document.getElementById('nav-brand').textContent = c.brand_name;
+      document.getElementById('hero-title').textContent = c.brand_name;
+      document.getElementById('hero-subtitle').textContent = c.hero_subtitle;
+      
+      const aboutTitleParts = c.about_title.split(' ');
+      if (aboutTitleParts.length >= 2) {
+        document.getElementById('about-title').innerHTML = aboutTitleParts.slice(0, Math.ceil(aboutTitleParts.length/2)).join(' ') + '<br/>' + aboutTitleParts.slice(Math.ceil(aboutTitleParts.length/2)).join(' ');
+      } else {
+        document.getElementById('about-title').textContent = c.about_title;
+      }
+      
+      document.getElementById('about-text').textContent = c.about_text;
+      
+      const ctaParts = c.cta_tagline.split(' ');
+      if (ctaParts.length >= 2) {
+        document.getElementById('cta-tagline').innerHTML = ctaParts.slice(0, Math.ceil(ctaParts.length/2)).join(' ') + '<br/>' + ctaParts.slice(Math.ceil(ctaParts.length/2)).join(' ');
+      } else {
+        document.getElementById('cta-tagline').textContent = c.cta_tagline;
+      }
+      
+      document.getElementById('instagram-text').textContent = c.instagram_handle;
+      document.getElementById('contact-email-link').textContent = c.contact_email;
+      document.getElementById('contact-email-link').href = 'mailto:' + c.contact_email;
+      
+      // Update colors
+      document.getElementById('app-wrapper').style.backgroundColor = c.background_color;
+      document.getElementById('hero-section').style.backgroundColor = c.background_color;
+      document.getElementById('hero-title').style.color = c.text_color;
+      document.getElementById('hero-subtitle').style.color = c.accent_color;
+      document.getElementById('nav-brand').style.color = c.text_color;
+      
+      // Buttons
+      document.getElementById('hero-cta').style.backgroundColor = c.button_color;
+      document.getElementById('hero-cta').style.color = c.background_color;
+      document.getElementById('nav-shop-btn').style.backgroundColor = c.button_color;
+      document.getElementById('nav-shop-btn').style.color = c.background_color;
+      document.getElementById('cta-btn').style.backgroundColor = c.button_color;
+      document.getElementById('cta-btn').style.color = c.background_color;
+      
+      // Font
+      const fontStack = c.font_family + ', sans-serif';
+      document.body.style.fontFamily = fontStack;
+      
+      // Font size scaling
+      const baseSize = c.font_size;
+      document.getElementById('hero-subtitle').style.fontSize = (baseSize * 1.25) + 'px';
+      document.getElementById('about-text').style.fontSize = (baseSize * 1.125) + 'px';
+    }
+
+    function mapToCapabilities(config) {
+      const c = { ...defaultConfig, ...config };
+      return {
+        recolorables: [
+          {
+            get: () => c.background_color,
+            set: (v) => { c.background_color = v; window.elementSdk.setConfig({ background_color: v }); }
+          },
+          {
+            get: () => c.surface_color,
+            set: (v) => { c.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); }
+          },
+          {
+            get: () => c.text_color,
+            set: (v) => { c.text_color = v; window.elementSdk.setConfig({ text_color: v }); }
+          },
+          {
+            get: () => c.button_color,
+            set: (v) => { c.button_color = v; window.elementSdk.setConfig({ button_color: v }); }
+          },
+          {
+            get: () => c.accent_color,
+            set: (v) => { c.accent_color = v; window.elementSdk.setConfig({ accent_color: v }); }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => c.font_family,
+          set: (v) => { c.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
+        },
+        fontSizeable: {
+          get: () => c.font_size,
+          set: (v) => { c.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
+        }
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      const c = { ...defaultConfig, ...config };
+      return new Map([
+        ['brand_name', c.brand_name],
+        ['hero_subtitle', c.hero_subtitle],
+        ['about_title', c.about_title],
+        ['about_text', c.about_text],
+        ['cta_tagline', c.cta_tagline],
+        ['instagram_handle', c.instagram_handle],
+        ['contact_email', c.contact_email]
+      ]);
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+
+    // Smooth scroll for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href.length > 1) {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d064aa903e5d403',t:'MTc3MTUwOTYzOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
